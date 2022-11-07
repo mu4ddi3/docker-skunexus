@@ -1,4 +1,3 @@
 # Skunexus-core Docker environment
-###> lexik/jwt-authentication-bundle ###
-/config/jwt/*.pem
-###< lexik/jwt-authentication-bundle ###
+
+alias dcupsku="docker-compose -f /home/user/code/docker-skunexus/docker-compose.yml -f /home/user/code/docker-skunexus/docker-compose.override.yml up"
