@@ -1,0 +1,15 @@
+###> IDE ###
+/.idea
+
+### DOCKER ###
+/docker-compose.override.yaml
+/docker-compose.override.yml
+/.docker/data
+/.docker/volumes
+
+###> custom ###
+.DS_Store
+###< custom ###
+
+###> Project ###
+/skunexus-core
