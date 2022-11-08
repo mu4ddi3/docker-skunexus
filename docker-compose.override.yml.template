@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+    skunexus_nginx:
+        ports:
+            - 180:80
+            - 1443:443
+        volumes:
+            - /home/user/code/project:/application
+
+    skunexus_php:
+        build:
+            args:
+                - WITH_XDEBUG=true
+        extra_hosts:
+            - "host.docker.internal:host-gateway"
+        volumes:
+            - /home/user/code/project:/application
+        environment:
+            - PHP_IDE_CONFIG=serverName=localhost
+            - XDEBUG_CLIENT_HOST=host.docker.internal
+            - XDEBUG_DEFAULT_KEY=XDBG-CLI
+            - XDEBUG_MODE=develop, debug
+            - XDEBUG_START_WITH_REQUEST=trigger
+
+    skunexus_db_sql:
+        ports:
+            - 13306:3306
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: db_name
+            MYSQL_USER: db_user
+            MYSQL_PASSWORD: db_password
