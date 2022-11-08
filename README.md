@@ -1,17 +1,17 @@
 # Skunexus Docker environment
 
-## build (+with arg)
+### build (+with arg)
 ```bash
   docker-compose -f /home/user/code/docker-skunexus/docker-compose.yml -f /home/user/code/docker-skunexus/docker-compose.override.yml build
   docker-compose -f /home/user/code/docker-skunexus/docker-compose.yml -f /home/user/code/docker-skunexus/docker-compose.override.yml build --build-arg WITH_XDEBUG="false"
 ```
 
-## up
+### up
 ```bash
   docker-compose -f /home/user/code/docker-skunexus/docker-compose.yml -f /home/user/code/docker-skunexus/docker-compose.override.yml up
 ```
 
-## rebuild & up
+###rebuild & up
 ```bash
   docker-compose -f /home/user/code/docker-skunexus/docker-compose.yml -f /home/user/code/docker-skunexus/docker-compose.override.yml up --build
 ```
