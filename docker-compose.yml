@@ -29,8 +29,8 @@ services:
         # map path where the project exists on your system in docker-compose.override.yml
         #   - /home/user/code/project:/application
             - .docker/data/home/developer:/home/developer
-            - .docker/php-fpm/custom.ini:/usr/local/etc/php/conf.d/custom-common.ini
-            - .docker/php-fpm/custom.ini:/usr/local/etc/php/conf.d/custom-xdebug.ini
+            - .docker/php-fpm/common.ini:/usr/local/etc/php/conf.d/custom-common.ini
+            - .docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/custom-xdebug.ini
         working_dir: /application
         environment:
             - PHP_IDE_CONFIG=serverName=localhost
