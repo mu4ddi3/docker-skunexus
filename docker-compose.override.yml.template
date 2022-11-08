@@ -5,7 +5,7 @@ services:
             - 180:80
             - 1443:443
         volumes:
-            - /home/user/code/project:/application
+            - "/home/user/code/${PROJECT:-project-core}:/application"
 
     skunexus_php:
         build:
@@ -14,12 +14,13 @@ services:
         extra_hosts:
             - "host.docker.internal:host-gateway"
         volumes:
-            - /home/user/code/project:/application
+            - "/home/user/code/${PROJECT:-project-core}:/application"
         environment:
             - PHP_IDE_CONFIG=serverName=localhost
             - XDEBUG_CLIENT_HOST=host.docker.internal
             - XDEBUG_DEFAULT_KEY=XDBG-CLI
             - XDEBUG_MODE=develop, debug
+#            - XDEBUG_START_WITH_REQUEST=yes
             - XDEBUG_START_WITH_REQUEST=trigger
 
     skunexus_db_sql:
