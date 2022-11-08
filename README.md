@@ -1,4 +1,4 @@
-# Skunexus-core Docker environment
+# Skunexus Docker environment
 
 ## build (+with arg)
 ```bash
