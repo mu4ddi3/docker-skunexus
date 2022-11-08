@@ -40,20 +40,15 @@ RUN set -ex; apt-get install -y --no-install-recommends \
     libzip-dev
 
 # Configure php extensions
-#RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl;
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg;
-#RUN docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu;
 RUN docker-php-ext-configure bcmath --enable-bcmath;
 RUN docker-php-ext-configure calendar --enable-calendar;
 RUN docker-php-ext-configure curl --with-curl;
 RUN docker-php-ext-configure ffi --with-ffi;
 RUN docker-php-ext-configure ftp --enable-ftp;
 RUN docker-php-ext-configure gettext --with-gettext;
-#RUN docker-php-ext-configure gmp --with-gmp;
 RUN docker-php-ext-configure intl --enable-intl;
 RUN docker-php-ext-configure pdo_mysql --with-pdo-mysql;
-#RUN docker-php-ext-configure pdo_pgsql --with-pdo-pgsql;
-#RUN docker-php-ext-configure pspell --with-pspell;
 RUN docker-php-ext-configure mbstring --enable-mbstring;
 RUN docker-php-ext-configure shmop --enable-shmop;
 RUN docker-php-ext-configure soap --enable-soap;
@@ -61,8 +56,6 @@ RUN docker-php-ext-configure sockets --enable-sockets;
 RUN docker-php-ext-configure sysvmsg --enable-sysvmsg;
 RUN docker-php-ext-configure sysvsem --enable-sysvsem;
 RUN docker-php-ext-configure sysvshm --enable-sysvshm;
-#RUN docker-php-ext-configure tidy --with-tidy;
-#RUN docker-php-ext-configure xmlrpc --with-xmlrpc;
 RUN docker-php-ext-configure xsl --with-xsl;
 
 # Install php extensions
