@@ -105,13 +105,6 @@ RUN pecl install mcrypt-1.0.5 \
 RUN pecl install redis \
     && docker-php-ext-enable redis
 
-# Install xdebug if needed -> use `--build-arg WITH_XDEBUG="true"` if needed
-ARG WITH_XDEBUG="false"
-RUN if [ $WITH_XDEBUG = "true" ] ; then \
-        pecl install xdebug; \
-        docker-php-ext-enable xdebug; \
-    fi ;
-
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
@@ -127,6 +120,13 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" >> /etc/apt/sources.li
    apt-get update && \
    apt-get -yq install yarn
 RUN yarn install --frozen-lockfile --production && yarn cache clean
+
+# Install xdebug if needed -> use `--build-arg WITH_XDEBUG="true"` if needed or use value from override file
+ARG WITH_XDEBUG="false"
+RUN if [ $WITH_XDEBUG = "true" ] ; then \
+        pecl install xdebug; \
+        docker-php-ext-enable xdebug; \
+    fi ;
 
 # Remove build dependencies
 RUN apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
