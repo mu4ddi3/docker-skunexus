@@ -119,6 +119,8 @@ ARG WITH_XDEBUG="false"
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
         pecl install xdebug; \
         docker-php-ext-enable xdebug; \
+        #echo 'name=value' > /usr/local/etc/php/conf.d/example.ini; \
+        #echo 'name2=value2' >> /usr/local/etc/php/conf.d/example.ini; \
     fi ;
 
 # Remove build dependencies
@@ -132,6 +134,12 @@ RUN rm -rf /tmp/pear ~/.pearrc;
 #RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
 #    echo "pl_PL.UTF-8 UTF-8" >> /etc/locale.gen && \
 #    locale-gen
+
+# Appending content to file example (notice >>)
+#RUN { \
+#    echo 'name=value'; \
+#    echo 'name2=value2'; \
+#} >> /usr/local/etc/php/conf.d/example.ini
 
 # Set recommended opcache php.ini settings
 #RUN { \
