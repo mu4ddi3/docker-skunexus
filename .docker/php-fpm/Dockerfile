@@ -21,7 +21,10 @@ RUN set -eux; apt-get install -y --no-install-recommends \
     vim \
     wget \
     zip \
-    unzip
+    unzip \
+    zsh \
+    expect \
+    locales
 
 # Install ephemeral build dependencies
 RUN set -ex; apt-get install -y --no-install-recommends \
@@ -101,6 +104,7 @@ RUN pecl install redis \
 # Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
+RUN composer global require "liuggio/fastest=^1.10"
 
 # Node.js
 RUN curl -fsSL https://deb.nodesource.com/setup_lts.x -o nodesource_setup.sh
@@ -128,6 +132,23 @@ RUN apt purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false;
 RUN rm -rf /var/lib/apt/lists/*;
 RUN pecl update-channels;
 RUN rm -rf /tmp/pear ~/.pearrc;
+
+# Install oh-my-zsh
+RUN curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -o oh-my-zsh-install.sh
+RUN bash oh-my-zsh-install.sh
+#RUN sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/installs.sh)"
+#RUN wait $!
+
+#RUN if ! test -f "~/.zshrc"; then \
+#      sed -i "s/ZSH_THEME=\"robbyrussell\"/ZSH_THEME=\"agnoster\"/gi" ~/.zshrc; \
+#      sed -i "s/plugins=(git)/plugins(sudo web-search copypath copyfile copybuffer dirhistory history emoji encode64 zsh-syntax-highlighting zsh-autosuggestions)/gi" ~/.zshrc; \
+#    fi ;
+
+#RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
+#    locale-gen
+#ENV LANG en_US.UTF-8
+#ENV LANGUAGE en_US:en
+#ENV LC_ALL en_US.UTF-8
 
 # Some old stuff
 #COPY php-fpm-pool.conf /etc/php/7.4/pool.d/www.conf
