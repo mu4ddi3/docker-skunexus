@@ -117,7 +117,7 @@ RUN yarn install --frozen-lockfile --production && yarn cache clean
 # Install xdebug if needed -> use `--build-arg WITH_XDEBUG="true"` if needed or use value from override file
 ARG WITH_XDEBUG="false"
 RUN if [ $WITH_XDEBUG = "true" ] ; then \
-        pecl install xdebug; \
+        pecl install xdebug-3.1.6; \
         docker-php-ext-enable xdebug; \
         #echo 'name=value' > /usr/local/etc/php/conf.d/example.ini; \
         #echo 'name2=value2' >> /usr/local/etc/php/conf.d/example.ini; \
