@@ -162,6 +162,7 @@ RUN sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && \
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
+ENV NODE_OPTIONS=--openssl-legacy-provider
 
 # Some old stuff
 #COPY php-fpm-pool.conf /etc/php/7.4/pool.d/www.conf
