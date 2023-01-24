@@ -31,6 +31,7 @@ services:
             - .docker/php-fpm/xdebug.ini:/usr/local/etc/php/conf.d/custom-xdebug.ini
         working_dir: /application
         environment:
+            - PROJECT=${PROJECT}
             - PHP_IDE_CONFIG=serverName=localhost
             - XDEBUG_DEFAULT_KEY=PHPSTORM
             - XDEBUG_CLIENT_HOST=${XDEBUG_CLIENT_HOST:-host.docker.internal}
